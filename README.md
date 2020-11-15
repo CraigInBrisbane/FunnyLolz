@@ -30,10 +30,11 @@ It makes use of .Net Core 3.1.404
 
 ## What I'd have done next
 
-Complete option 2 - the Terms.
-Add Swagger to allow for easy reading of the API endpoints.
-Moved hard coded items (url, ports etc) into Appsettings.json
-Enhanced error handling
-Added a console log sync to log items somewhere
+* Complete option 2 - the Terms.
+* Add Swagger to allow for easy reading of the API endpoints.
+* Moved hard coded items (url, ports etc) into Appsettings.json
+* Enhanced error handling
+* Added a console log sync to log items somewhere
+
 
 But poor planning on my part, didn't allow me to complete this in the allocated 3 hours.
