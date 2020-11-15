@@ -18,3 +18,13 @@ Ideas to demonstrate:
 * JWT Tokens to achieve some form of security
 
 Unfortunately, I expended my time, probably due to over-engineering, but I wanted to demonstrate key askpects of my development.
+
+The project was coded in Visual Studion 2019 Community Edition, and is based on latest updates. 
+It makes use of .Net Core 3.1.404
+
+## To run the solution:
+
+1. Ensure that the solution runs two projects:
+* API - This will run the API endpoint
+* UI - This will run the UI client app.
+
