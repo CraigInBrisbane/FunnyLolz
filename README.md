@@ -6,6 +6,8 @@ Create an application that accesses a 3rd party API, displaying data on the scre
 
 From there, the API will connect to the 3rd part endpoint, retreive data and return a formatted response to the client.
 
+![demo](https://s8.gifyu.com/images/2da967e460c24dc67.gif)
+
 Ideas to demonstrate:
 
 * Dependency injection on the API layer, to assist with unit testing.
@@ -27,6 +29,8 @@ It makes use of .Net Core 3.1.404
 1. Ensure that the solution runs two projects:
 * API - This will run the API endpoint
 * UI - This will run the UI client app.
+
+![run the projects](https://i.ibb.co/L85m4Bk/1.png)
 
 ## What I'd have done next
 
