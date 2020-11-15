@@ -80,13 +80,22 @@ namespace UI
         static async Task GetRandomJokeAsync()
         {
             var current = Console.ForegroundColor;
-            HttpResponseMessage response = await client.GetAsync($"/joke");
-            response.EnsureSuccessStatusCode();
-            var json = await response.Content.ReadAsStringAsync();
-            var joke = JsonConvert.DeserializeObject<DadJokeResponse>(json);
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync($"/joke");
+                response.EnsureSuccessStatusCode();
+                var json = await response.Content.ReadAsStringAsync();
+                var joke = JsonConvert.DeserializeObject<DadJokeResponse>(json);
 
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\r\n\r\n" + joke.Data.Joke);
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\r\n\r\n" + joke.Data.Joke);
+
+            }
+            catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"This is no joke! The funny stuff, broke! Probably because a connection cannot be made to the api. Call the clown that wrote this, and give him this message:\r\n\r\n{e.Message}");
+            }
             Console.ForegroundColor = current;
 
             Console.WriteLine("\r\n\r\nHahah! Press a key to make another selection...");
