@@ -12,14 +12,11 @@ Ideas to demonstrate:
 
 * Dependency injection on the API layer, to assist with unit testing.
 * Dependency injection of httpClient in the API layer.
-* Error handling
-* Unit Testing (XUnit)
+* Basic Error handling
+* Unit Testing
 * Layered application development to assist with unit testing and code segragation
-* Linq to handle searches of data for the term searches
-* Swagger as and Endpoint documentation tool
-* JWT Tokens to achieve some form of security
-
-Unfortunately, I expended my time, probably due to over-engineering, but I wanted to demonstrate key askpects of my development.
+* Linq, Regex to handle data and searches of data for the term searches
+* Swagger as and Endpoint documentation tool (/swagger)
 
 The project was coded in Visual Studion 2019 Community Edition, and is based on latest updates. 
 It makes use of .Net Core 3.1.404
@@ -32,13 +29,7 @@ It makes use of .Net Core 3.1.404
 
 ![run the projects](https://i.ibb.co/L85m4Bk/1.png)
 
-## What I'd have done next
+Note, swagger is available on the /swagger url:
 
-* Complete option 2 - the Terms.
-* Add Swagger to allow for easy reading of the API endpoints.
-* Moved hard coded items (url, ports etc) into Appsettings.json
-* Enhanced error handling
-* Added a console log sync to log items somewhere
+![run the projects](https://i.ibb.co/q0wYxZ2/1.png)
 
-
-But poor planning on my part, didn't allow me to complete this in the allocated 3 hours.
