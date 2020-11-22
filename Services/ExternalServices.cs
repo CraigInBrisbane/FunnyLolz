@@ -39,7 +39,7 @@ namespace Services
         internal static async Task<List<string>> GetJokes(HttpClient client, string searchTerm, int count)
         {
             var encodedTerm = HttpUtility.UrlEncode(searchTerm);
-            HttpResponseMessage response = await client.GetAsync($"search?term={searchTerm}&limit={count}");
+            HttpResponseMessage response = await client.GetAsync($"search?term={HttpUtility.UrlEncode(searchTerm)}&limit={count}");
             response.EnsureSuccessStatusCode();
             Console.WriteLine(response.StatusCode);
             var json = await response.Content.ReadAsStringAsync();
