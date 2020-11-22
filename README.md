@@ -31,5 +31,10 @@ It makes use of .Net Core 3.1.404
 
 Note, swagger is available on the /swagger url:
 
-![run the projects](https://i.ibb.co/q0wYxZ2/1.png)
+![swagger](https://i.ibb.co/q0wYxZ2/1.png)
 
+Extremely basic unit tests are available in the Test Explorer.
+
+![run the tests](hhttps://i.ibb.co/CPsxDJg/2.png)
+
+They should pass... hopefully.
