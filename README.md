@@ -35,6 +35,6 @@ Note, swagger is available on the /swagger url:
 
 Extremely basic unit tests are available in the Test Explorer.
 
-![run the tests](hhttps://i.ibb.co/CPsxDJg/2.png)
+![run the tests](https://i.ibb.co/CPsxDJg/2.png)
 
 They should pass... hopefully.
