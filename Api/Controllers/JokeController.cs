@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.Interfaces;
 using SharedLib.Dtos;
 using SharedLib.Responses;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
@@ -29,20 +29,19 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        [Route("{count:int}")]
-        public async Task<IActionResult> GetJokes(int count)
+        [Route("{term}/{count:int}")]
+        public async Task<IActionResult> GetJokes(string term, int count)
         {
-            return Ok(new DadJokeListResponse 
+            return Ok(new DadJokeListResponse
             {
                 Data = new List<DadJokeDto>
                 {
                     new DadJokeDto
                     {
-                        Joke = "First joke..."
+                        Joke = term
                     }
                 }
             });
         }
-
     }
 }

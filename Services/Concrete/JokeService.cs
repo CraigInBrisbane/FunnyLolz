@@ -1,9 +1,7 @@
 ﻿using Services.Interfaces;
 using SharedLib.Dtos;
 using SharedLib.Responses;
-using System;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Services.Concrete

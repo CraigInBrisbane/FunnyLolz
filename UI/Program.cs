@@ -9,14 +9,11 @@ namespace UI
 {
     class Program
     {
-        static HttpClient client = new HttpClient();
+        static readonly HttpClient client = new HttpClient();
 
         static async Task Main(string[] args)
         {
-            client.BaseAddress = new Uri("https://localhost:44330/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
+            ConfigureHttpClient();
 
             bool more = true;
 
@@ -32,6 +29,9 @@ namespace UI
                     case 1:
                         await GetRandomJokeAsync();
                         break;
+                    case 2:
+                        await GetSearchJokeAsync();
+                        break;
                     default:
                         Console.WriteLine("Nope");
                         break;
@@ -39,6 +39,13 @@ namespace UI
             }
         }
 
+        private static void ConfigureHttpClient()
+        {
+            client.BaseAddress = new Uri("https://localhost:44330/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+        }
 
         static void ShowTitle()
         {
@@ -53,10 +60,10 @@ namespace UI
             Console.WriteLine(@"           /____/");
             Console.WriteLine("\r\n\r\n");
             Console.ForegroundColor = current;
-            
+
         }
 
-        static int GetMainMenuOption()
+        private static int GetMainMenuOption()
         {
             var current = Console.ForegroundColor;
             Console.WriteLine("Make a selection below, and prepare to laugh!");
@@ -65,11 +72,12 @@ namespace UI
             Console.WriteLine("0. We're done here! I cannot take any more! Exit me!");
             Console.Write("\r\n\r\nMake your selection wisely: ");
             var selection = Console.ReadKey();
+
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("\r\nStand by! Incoming comedic material...");
             Console.ForegroundColor = current;
 
-            if(int.TryParse(selection.KeyChar.ToString(), out int result))
+            if (int.TryParse(selection.KeyChar.ToString(), out int result))
             {
                 return result;
             }
@@ -77,7 +85,39 @@ namespace UI
             return GetMainMenuOption();
         }
 
-        static async Task GetRandomJokeAsync()
+        private static async Task GetSearchJokeAsync()
+        {
+            ShowTitle();
+            Console.WriteLine("Ah, I see... we want to be subjective on the jokes. OK...");
+            var searchTerm = GetSearchTerm();
+            HttpResponseMessage response = await client.GetAsync($"/joke/{searchTerm}/30");
+            response.EnsureSuccessStatusCode();
+            var json = await response.Content.ReadAsStringAsync();
+            var joke = JsonConvert.DeserializeObject<DadJokeListResponse>(json);
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("\r\n\r\n" + joke.Data[0].Joke);
+
+        }
+
+        private static string GetSearchTerm()
+        {
+            var current = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("\r\nEnter a word, and I'll see if I can get you a few jokes based on in: ");
+            Console.ForegroundColor = current;
+            var term = Console.ReadLine();
+            if (string.IsNullOrEmpty(term))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\r\n\r\nYeahh..... you're going to have to give me more to go on that that!");
+                Console.ForegroundColor = current;
+                return GetSearchTerm();
+            }
+            return term;
+        }
+
+        private static async Task GetRandomJokeAsync()
         {
             var current = Console.ForegroundColor;
             try

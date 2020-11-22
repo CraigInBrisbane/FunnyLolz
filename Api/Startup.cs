@@ -1,19 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Services.Concrete;
 using Services.Interfaces;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace Api
 {
@@ -37,6 +31,7 @@ namespace Api
             _client.DefaultRequestHeaders.Add("User-Agent", "DegreedCandidateTestApp");
 
             services.AddControllers();
+            services.AddSwaggerGen();
 
             services.AddScoped<IJokeService, JokeService>();
             services.AddSingleton<HttpClient>(_client);
@@ -56,6 +51,12 @@ namespace Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Degreed's Funniest App Ever");
+            });
 
             app.UseEndpoints(endpoints =>
             {
