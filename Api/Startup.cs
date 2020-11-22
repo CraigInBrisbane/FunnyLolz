@@ -1,3 +1,4 @@
+using Business;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +35,7 @@ namespace Api
             services.AddSwaggerGen();
 
             services.AddScoped<IJokeService, JokeService>();
+            services.AddScoped<ILogic, Logic>();
             services.AddSingleton<HttpClient>(_client);
 
         }

@@ -32,16 +32,8 @@ namespace Api.Controllers
         [Route("{term}/{count:int}")]
         public async Task<IActionResult> GetJokes(string term, int count)
         {
-            return Ok(new DadJokeListResponse
-            {
-                Data = new List<DadJokeDto>
-                {
-                    new DadJokeDto
-                    {
-                        Joke = term
-                    }
-                }
-            });
+            var result = await _jokeService.GetJokes(term, count);
+            return Ok(result);
         }
     }
 }
